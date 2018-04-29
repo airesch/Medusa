@@ -9,7 +9,7 @@ from time import time
 
 from guessit.rules.common.date import valid_year
 
-from medusa import app
+from medusa import (app,scene_exceptions)
 from medusa.name_parser.rules import default_api
 
 
@@ -106,9 +106,13 @@ def get_expected_titles(show_list):
             if year and not valid_year(int(year)):
                 series = name
 
-            if not any([char.isdigit() for char in series]):
-                continue
+            #if not any([char.isdigit() for char in series]):
+            #    continue
 
             expected_titles.append(series)
+        all_scene_exceptions = scene_exceptions.get_all_scene_exceptions(show)
+        for season in all_scene_exceptions:
+            for name in all_scene_exceptions[season]:
+                expected_titles.append(name)
 
     return expected_titles
