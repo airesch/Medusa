@@ -85,7 +85,6 @@
         <script type="text/javascript" src="js/config/post-processing.js?${sbPID}"></script>
         <script type="text/javascript" src="js/config/subtitles.js?${sbPID}"></script>
 
-        <script type="text/javascript" src="js/add-shows/add-existing-show.js?${sbPID}"></script>
         <script type="text/javascript" src="js/add-shows/init.js?${sbPID}"></script>
         <script type="text/javascript" src="js/add-shows/new-show.js?${sbPID}"></script>
         <script type="text/javascript" src="js/add-shows/popular-shows.js?${sbPID}"></script>
@@ -95,7 +94,6 @@
         <script type="text/javascript" src="js/common/init.js?${sbPID}"></script>
 
         <script type="text/javascript" src="js/home/display-show.js?${sbPID}"></script>
-        <script type="text/javascript" src="js/home/edit-show.js?${sbPID}"></script>
         <script type="text/javascript" src="js/home/index.js?${sbPID}"></script>
         <script type="text/javascript" src="js/home/post-process.js?${sbPID}"></script>
         <script type="text/javascript" src="js/home/restart.js?${sbPID}"></script>
@@ -114,12 +112,13 @@
         <script type="text/javascript" src="js/browser.js?${sbPID}"></script>
 
         <%
-            ## Add Global Vue component x-templates here
+            ## Add Vue component x-templates here
             ## @NOTE: These will be usable on all pages
         %>
         <script src="js/lib/vue.js"></script>
         <script src="js/lib/vue-async-computed@3.3.0.js"></script>
         <script src="js/lib/vue-in-viewport-mixin.min.js"></script>
+        <script src="js/lib/vue-router.min.js"></script>
         <script src="js/lib/vue-meta.min.js"></script>
         <script src="js/lib/query-string.min.js"></script>
         <%include file="/vue-components/app-link.mako"/>
@@ -127,6 +126,25 @@
         <%include file="/vue-components/file-browser.mako"/>
         <%include file="/vue-components/plot-info.mako"/>
         <%include file="/vue-components/saved-message.mako"/>
+        <%include file="/vue-components/quality-chooser.mako"/>
+        <%include file="/vue-components/language-select.mako"/>
+        <script>window.routes = [];</script>
         <%block name="scripts" />
+        <script>
+            if (!window.app) {
+                console.info('Loading Vue with router since window.app is missing.');
+                const router = new vueRouter({
+                    base: document.body.getAttribute('api-root').replace('api/v2/', ''),
+                    mode: 'history',
+                    routes
+                });
+                window.app = new Vue({
+                    el: '#vue-wrap',
+                    router
+                });
+            } else {
+                console.info('Loading local Vue since we found a window.app');
+            }
+        </script>
     </body>
 </html>

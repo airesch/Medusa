@@ -6,9 +6,9 @@
 %>
 <%block name="scripts">
 <script>
-let app;
+window.app = {};
 const startVue = () => {
-    app = new Vue({
+    window.app = new Vue({
         el: '#vue-wrap',
         metaInfo: {
             title: 'Config - Episode Search'
@@ -355,7 +355,7 @@ const startVue = () => {
                                     </span>
                                 </label>
                             </div><!-- max cache age -->
-                            <input type="submit" class="btn config_submitter" value="Save Changes" />
+                            <input type="submit" class="btn-medusa config_submitter" value="Save Changes" />
                         </fieldset>
                     </div><!-- general settings -->
                         <div class="component-group-desc">
@@ -430,7 +430,7 @@ const startVue = () => {
                                     </span>
                                 </label>
                             </div><!-- ignore unknown subs -->
-                            <input type="submit" class="btn config_submitter" value="Save Changes" />
+                            <input type="submit" class="btn-medusa config_submitter" value="Save Changes" />
                         </fieldset>
                         </div><!-- search filters -->
                 </div><!-- /component-group1 //-->
@@ -557,9 +557,9 @@ const startVue = () => {
                                 </label>
                             </div>
                             % endif
-                        <div class="testNotification" id="testSABnzbd_result">{{nzb.sabnzbd.testStatus}}</div>
-                            <input class="btn" type="button" value="Test SABnzbd" id="testSABnzbd" class="btn test-button"/>
-                            <input type="submit" class="btn config_submitter" value="Save Changes" /><br>
+                            <div class="testNotification" id="testSABnzbd_result">{{nzb.sabnzbd.testStatus}}</div>
+                            <input class="btn-medusa test-button" type="button" value="Test SABnzbd" id="testSABnzbd"/>
+                            <input type="submit" class="btn-medusa config_submitter" value="Save Changes" /><br>
                         </div>
                         <div v-show="nzb.method === 'nzbget'" id="nzbget_settings">
                             <div class="field-pair">
@@ -653,9 +653,9 @@ const startVue = () => {
                                 </label>
                             </div>
                             <div class="testNotification" id="testNZBget_result">{{nzb.nzbget.testStatus}}</div>
-                                <input @click="testNzbget" class="btn" type="button" value="Test NZBget" id="testNZBget" class="btn test-button"/>
-                                <input type="submit" class="btn config_submitter" value="Save Changes" /><br>
-                            </div>
+                            <input @click="testNzbget" class="btn-medusa test-button" type="button" value="Test NZBget" id="testNZBget"/>
+                            <input type="submit" class="btn-medusa config_submitter" value="Save Changes" /><br>
+                        </div>
                         </div><!-- /content_use_nzbs //-->
                     </fieldset>
                 </div><!-- /component-group2 //-->
@@ -695,7 +695,7 @@ const startVue = () => {
                                             </span>
                                         </label>
                                     </div>
-                                    <input type="submit" class="btn config_submitter" value="Save Changes" /><br>
+                                    <input type="submit" class="btn-medusa config_submitter" value="Save Changes" /><br>
                                 </div>
                             </div>
                             <div v-show="torrent.method !== 'blackhole'">
@@ -840,15 +840,15 @@ const startVue = () => {
                                     </label>
                                 </div>
                                 <div class="testNotification" v-show="torrent.testStatus" v-html="torrent.testStatus"></div>
-                                <input @click="testTorrentClient" type="button" value="Test Connection" class="btn test-button"/>
-                                <input type="submit" class="btn config_submitter" value="Save Changes" /><br>
+                                <input @click="testTorrentClient" class="btn-medusa test-button" type="button" value="Test Connection"/>
+                                <input type="submit" class="btn-medusa config_submitter" value="Save Changes" /><br>
                             </div>
                         </div><!-- /content_use_torrents //-->
                     </fieldset>
                 </div><!-- /component-group3 //-->
                 <br>
                 <h6 class="pull-right"><b>All non-absolute folder locations are relative to <span class="path">${app.DATA_DIR}</span></b> </h6>
-                <input type="submit" class="btn pull-left config_submitter button" value="Save Changes" />
+                <input type="submit" class="btn-medusa pull-left config_submitter button" value="Save Changes" />
             </div><!-- /config-components //-->
         </form>
     </div>
