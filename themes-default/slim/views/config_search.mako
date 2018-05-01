@@ -223,7 +223,7 @@ const startVue = () => {
                                         <span class="component-title">Check propers every:</span>
                                         <span class="component-desc">
                                             <select id="check_propers_interval" name="check_propers_interval" class="form-control input-sm">
-                                                <option v-for="(interval, label) in searchIntervals" :v-model="propersInterval" :selected="propersInterval === internal">{{propersIntervalLabels[label]}}</option>
+                                                <option v-for="(interval, label) in searchIntervals" :v-model="propersInterval">{{propersIntervalLabels[label]}}</option>
                                             </select>
                                         </span>
                                     </label>
@@ -566,7 +566,7 @@ const startVue = () => {
                                 <label for="nzbget_use_https">
                                     <span class="component-title">Connect using HTTPS</span>
                                     <span class="component-desc">
-                                        <input v-model="nzb.nzbget.useHttps" id="nzbget_use_https" type="checkbox" class="enabler" id="nzbget_use_https" name="nzbget_use_https" :checked="nzb.nzbget.useHttps"/>
+                                        <input v-model="nzb.nzbget.useHttps" id="nzbget_use_https" type="checkbox" class="enabler" id="nzbget_use_https" name="nzbget_use_https"/>
                                         <p><b>note:</b> enable Secure control in NZBGet and set the correct Secure Port here</p>
                                     </span>
                                 </label>
@@ -681,7 +681,7 @@ const startVue = () => {
                                     <span class="component-title">Send .torrent files to:</span>
                                     <span class="component-desc">
                                     <select v-model="torrent.method" name="torrent_method" id="torrent_method" class="form-control input-sm">
-                                        <option v-for="(client, name) in clients" :value="name" :selected="torrent.method === name">{{client.title}}</option>
+                                        <option v-for="(client, name) in clients" :value="name">{{client.title}}</option>
                                     </select>
                                     </span>
                                 </label>
@@ -726,7 +726,7 @@ const startVue = () => {
                                         <span class="component-title">Http Authentication</span>
                                         <span class="component-desc">
                                             <select v-model="torrent.authType" name="torrent_auth_type" id="torrent_auth_type" class="form-control input-sm">
-                                                <option v-for="(title, name) in httpAuthTypes" :value="name" :selected="torrent.authType === name">{{title}}</option>
+                                                <option v-for="(title, name) in httpAuthTypes" :value="name">{{title}}</option>
                                             </select>
                                             <p></p>
                                         </span>
