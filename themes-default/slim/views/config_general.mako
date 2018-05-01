@@ -17,8 +17,11 @@ window.app = new Vue({
     metaInfo: {
         title: 'Config - General'
     },
-    data: {
-        header: 'General Configuration'
+    data() {
+        return {
+            header: 'General Configuration',
+            rootDirs: []
+        };
     }
 });
 </script>
@@ -115,7 +118,7 @@ window.app = new Vue({
                                     <span class="component-title">Show root directories</span>
                                     <span class="component-desc">
                                         <p>where the files of shows are located</p>
-                                        <%include file="/inc_rootDirs.mako"/>
+                                        <root-dirs @update:root-dirs="rootDirs = $event" />
                                     </span>
                                 </label>
                             </div>
