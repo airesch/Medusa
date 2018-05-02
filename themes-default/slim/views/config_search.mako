@@ -172,7 +172,6 @@ const startVue = () => {
                 randomizeProviders: ${js_bool(app.RANDOMIZE_PROVIDERS)},
                 downloadPropers: ${js_bool(app.DOWNLOAD_PROPERS)},
                 checkPropersInterval: '${app.CHECK_PROPERS_INTERVAL}',
-                // propersSearchIntervals: JSON.parse('${json.dumps(app.PROPERS_SEARCH_INTERVAL)}'),
                 propersIntervalLabels: JSON.parse('${json.dumps(app.PROPERS_INTERVAL_LABELS)}'),
                 propersSearchDays: ${app.PROPERS_SEARCH_DAYS},
                 backlogDays: ${app.BACKLOG_DAYS},
@@ -332,7 +331,6 @@ const startVue = () => {
                                         <span class="component-desc">
                                             <select id="check_propers_interval" name="check_propers_interval" v-model="checkPropersInterval" class="form-control input-sm">
                                                 <option v-for="(label, interval) in propersIntervalLabels" :value="interval">{{label}}</option>
-                                                ## <option v-for="(interval, label) in propersSearchIntervals" :value="interval">{{propersIntervalLabels[label]}}</option>
                                             </select>
                                         </span>
                                     </label>
