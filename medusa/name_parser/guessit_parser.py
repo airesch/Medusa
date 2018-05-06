@@ -82,7 +82,7 @@ def guessit(name, options=None):
 def get_expected_titles(show_list):
     """Return expected titles to be used by guessit.
 
-    It iterates over user's show list and only returns a regex for titles that contains numbers
+    It iterates over user's show list and only returns a regex for titles that contain non-alpha characters
     (since they can confuse guessit).
 
     :param show_list:
@@ -93,6 +93,10 @@ def get_expected_titles(show_list):
     expected_titles = []
     for show in show_list:
         names = {show.name}.union(show.exceptions)
+        all_scene_exceptions = scene_exceptions.get_all_scene_exceptions(show)
+        for season in all_scene_exceptions:
+            names.update(all_scene_exceptions[season])
+
         for name in names:
             if name.isdigit():
                 # do not add numbers to expected titles.
@@ -106,13 +110,9 @@ def get_expected_titles(show_list):
             if year and not valid_year(int(year)):
                 series = name
 
-            #if not any([char.isdigit() for char in series]):
-            #    continue
+            if all([char.isalpha() or char.isspace() for char in series]):
+	            continue
 
             expected_titles.append(series)
-        all_scene_exceptions = scene_exceptions.get_all_scene_exceptions(show)
-        for season in all_scene_exceptions:
-            for name in all_scene_exceptions[season]:
-                expected_titles.append(name)
 
     return expected_titles
